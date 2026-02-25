@@ -1,0 +1,194 @@
+/**
+ * CodeEditor.css — Neon Code Editor with cyberpunk toolbar
+ */
+
+.code-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: rgba(6,6,15,0.95);
+  overflow: hidden;
+}
+
+/* ── Toolbar ──────────────────────────────────────────────────── */
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(10,10,30,0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(168,85,247,0.12);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 8px;
+  background: rgba(168,85,247,0.06);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.toolbar-btn:hover:not(:disabled) {
+  background: rgba(168,85,247,0.15);
+  border-color: rgba(168,85,247,0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168,85,247,0.1);
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.toolbar-btn .btn-icon {
+  font-size: 11px;
+}
+
+/* Run button — neon green */
+.btn-run {
+  background: rgba(57,255,20,0.08);
+  border-color: rgba(57,255,20,0.3);
+  color: var(--neon-green);
+}
+
+.btn-run:hover:not(:disabled) {
+  background: rgba(57,255,20,0.2);
+  border-color: var(--neon-green);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(57,255,20,0.2);
+}
+
+.btn-run.active {
+  background: rgba(57,255,20,0.15);
+  border-color: var(--neon-green);
+  animation: pulse-neon-green 2s infinite;
+}
+
+/* Stop button — neon pink */
+.btn-stop {
+  background: rgba(247,37,133,0.08);
+  border-color: rgba(247,37,133,0.3);
+  color: var(--neon-pink);
+}
+
+.btn-stop:hover:not(:disabled) {
+  background: rgba(247,37,133,0.2);
+  border-color: var(--neon-pink);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(247,37,133,0.2);
+}
+
+/* Reset button — neon purple */
+.btn-reset {
+  background: rgba(168,85,247,0.08);
+  border-color: rgba(168,85,247,0.3);
+  color: var(--neon-purple);
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: rgba(168,85,247,0.2);
+  border-color: var(--neon-purple);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(168,85,247,0.2);
+}
+
+/* Connect button — neon cyan */
+.btn-connect {
+  background: rgba(34,211,238,0.08);
+  border-color: rgba(34,211,238,0.3);
+  color: var(--neon-cyan);
+}
+
+.btn-connect:hover:not(:disabled) {
+  background: rgba(34,211,238,0.2);
+  border-color: var(--neon-cyan);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(34,211,238,0.2);
+}
+
+.btn-connect.connected {
+  background: rgba(57,255,20,0.08);
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+  animation: pulse-neon-green 3s infinite;
+}
+
+/* Secondary buttons */
+.btn-secondary {
+  background: transparent;
+  border-color: rgba(168,85,247,0.15);
+  font-size: 11px;
+  padding: 5px 10px;
+}
+
+.btn-secondary:hover {
+  background: rgba(168,85,247,0.1) !important;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: rgba(168,85,247,0.15);
+  margin: 0 4px;
+}
+
+/* ── Mode Badge ───────────────────────────────────────────────── */
+
+.mode-badge {
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  font-family: 'Orbitron', monospace;
+}
+
+.mode-badge.simulation {
+  background: linear-gradient(90deg, rgba(168,85,247,0.1), rgba(59,130,246,0.1));
+  color: var(--neon-blue);
+  border-bottom: 2px solid var(--neon-blue);
+  text-shadow: 0 0 8px rgba(59,130,246,0.3);
+}
+
+.mode-badge.hardware {
+  background: linear-gradient(90deg, rgba(57,255,20,0.05), rgba(34,211,238,0.05));
+  color: var(--neon-green);
+  border-bottom: 2px solid var(--neon-green);
+  text-shadow: 0 0 8px rgba(57,255,20,0.3);
+}
+
+/* ── Editor Container ─────────────────────────────────────────── */
+
+.editor-container {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Animations ───────────────────────────────────────────────── */
+
+@keyframes pulse-neon-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(57,255,20,0.3); }
+  50% { box-shadow: 0 0 12px 3px rgba(57,255,20,0.15); }
+}

@@ -1,0 +1,408 @@
+/**
+ * App.css — ESP8266 Creative · Cyberpunk Neon Layout
+ */
+
+/* ── Animated Background ──────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated blob background */
+.app::before {
+  content: '';
+  position: fixed;
+  top: -30%;
+  left: -20%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+  animation: blob-morph 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app::after {
+  content: '';
+  position: fixed;
+  bottom: -25%;
+  right: -15%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%);
+  animation: blob-morph 25s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 56px;
+  background: rgba(10,10,30,0.7);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid rgba(168,85,247,0.15);
+  flex-shrink: 0;
+  z-index: 20;
+  position: relative;
+}
+
+/* Neon line under header */
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-cyan), var(--neon-purple), transparent);
+  opacity: 0.6;
+}
+
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px rgba(168,85,247,0.5));
+  animation: float 4s ease-in-out infinite;
+}
+
+.logo-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+
+.logo-version {
+  font-family: 'Orbitron', monospace;
+  font-size: 8px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(168,85,247,0.15);
+  color: var(--neon-purple);
+  font-weight: 700;
+  border: 1px solid rgba(168,85,247,0.25);
+  letter-spacing: 1px;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 12px;
+  background: rgba(168,85,247,0.08);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(168,85,247,0.2);
+  border-color: rgba(168,85,247,0.4);
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 0 20px rgba(168,85,247,0.2);
+}
+
+/* GitHub link */
+.github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 12px;
+  background: rgba(168,85,247,0.08);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration: none;
+}
+
+.github-link:hover {
+  background: rgba(168,85,247,0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(168,85,247,0.2);
+  color: var(--neon-cyan);
+}
+
+/* Project Name */
+.project-name-input {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 5px 12px;
+  color: var(--text-primary);
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.project-name-input:hover {
+  border-color: rgba(168,85,247,0.2);
+}
+
+.project-name-input:focus {
+  outline: none;
+  border-color: var(--neon-purple);
+  background: rgba(168,85,247,0.08);
+  box-shadow: 0 0 20px rgba(168,85,247,0.15);
+}
+
+.unsaved-dot {
+  color: var(--neon-yellow);
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(253,224,71,0.5);
+  animation: pulse-neon 1.5s ease infinite;
+}
+
+.saved-indicator {
+  font-size: 13px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(34,211,238,0.4);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.saved-indicator:hover { opacity: 1; }
+
+/* Connection Badge */
+.connection-badge {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.connection-badge.simulation {
+  background: rgba(59,130,246,0.1);
+  color: var(--neon-blue);
+  border: 1px solid rgba(59,130,246,0.25);
+  box-shadow: 0 0 15px rgba(59,130,246,0.1);
+}
+
+.connection-badge.hardware {
+  background: rgba(34,211,238,0.1);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(34,211,238,0.25);
+  box-shadow: 0 0 15px rgba(34,211,238,0.1);
+  animation: glow-breathe 3s ease infinite;
+}
+
+/* ── Main Layout ──────────────────────────────────────────────── */
+.app-main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.panel { min-height: 0; min-width: 0; }
+
+/* Left Sidebar */
+.panel-sidebar {
+  width: 50%;
+  min-width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(168,85,247,0.1);
+  background: rgba(10,10,30,0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-terminal-inline {
+  height: 200px;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(168,85,247,0.12);
+}
+
+/* Resize Handle */
+.resize-handle {
+  width: 5px;
+  cursor: col-resize;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.resize-handle:hover,
+.resize-handle:active {
+  background: linear-gradient(180deg, var(--neon-purple), var(--neon-cyan));
+  box-shadow: 0 0 12px rgba(168,85,247,0.3);
+}
+
+/* Right Canvas */
+.panel-canvas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: transparent;
+}
+
+.simulation-header {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 40px;
+  background: rgba(10,10,30,0.5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(168,85,247,0.1);
+  flex-shrink: 0;
+}
+
+.sim-tab {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 8px 20px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease;
+}
+
+.sim-tab.active {
+  color: var(--neon-cyan);
+  border-bottom-color: var(--neon-cyan);
+  text-shadow: 0 0 12px rgba(34,211,238,0.4);
+}
+
+/* Simulation Canvas — the art zone */
+.simulation-canvas {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 40px;
+  min-height: 0;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 40% 40%, rgba(168,85,247,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(34,211,238,0.03) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(168,85,247,0.03) 39px, rgba(168,85,247,0.03) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(168,85,247,0.03) 39px, rgba(168,85,247,0.03) 40px);
+}
+
+/* Floating particles effect via pseudo-element */
+.simulation-canvas::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(168,85,247,0.4) 50%, transparent 50%),
+    radial-gradient(1px 1px at 30% 70%, rgba(34,211,238,0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 40%, rgba(247,37,133,0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 70% 80%, rgba(168,85,247,0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90% 30%, rgba(34,211,238,0.4) 50%, transparent 50%),
+    radial-gradient(1px 1px at 20% 90%, rgba(57,255,20,0.2) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 80% 10%, rgba(168,85,247,0.5) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 60%, rgba(253,224,71,0.2) 50%, transparent 50%);
+  animation: float 12s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 6px 20px;
+  background: rgba(10,10,30,0.5);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(168,85,247,0.08);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.footer-link {
+  color: var(--neon-purple);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(34,211,238,0.4);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .panel-sidebar { width: 50%; min-width: 260px; }
+  .panel-terminal-inline { height: 160px; }
+}
+
+@media (max-width: 700px) {
+  .app-main { flex-direction: column; }
+  .panel-sidebar {
+    width: 100%;
+    height: 300px;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid rgba(168,85,247,0.1);
+  }
+  .resize-handle { display: none; }
+  .header-center { display: none; }
+}

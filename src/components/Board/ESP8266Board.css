@@ -1,0 +1,487 @@
+/**
+ * ESP8266Board.css — Cyberpunk Neon PCB Board
+ */
+
+/* ── Wrapper ──────────────────────────────────────────────────── */
+
+.board-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  zoom: 1.45;
+}
+
+.external-components {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+/* ── Board assembly ───────────────────────────────────────────── */
+
+.nodemcu-board {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  filter: drop-shadow(0 0 40px rgba(168,85,247,0.15))
+          drop-shadow(0 12px 40px rgba(0,0,0,0.5));
+}
+
+/* ── Pin headers ──────────────────────────────────────────────── */
+
+.pin-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22px 0 42px;
+  gap: 1px;
+}
+
+.pin-header.left { align-items: flex-end; }
+.pin-header.right { align-items: flex-start; }
+
+/* ── PCB Body ─────────────────────────────────────────────────── */
+
+.pcb-body {
+  width: 200px;
+  min-height: 440px;
+  background:
+    linear-gradient(180deg, #0a0a20 0%, #08081a 40%, #060615 100%);
+  border: 2px solid rgba(168,85,247,0.3);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 14px;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+
+  /* Neon PCB texture */
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(168,85,247,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(34,211,238,0.04) 0%, transparent 50%);
+}
+
+/* Inner border glow */
+.pcb-body::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(168,85,247,0.12);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Board label */
+.pcb-body::after {
+  content: 'NodeMCU V3';
+  position: absolute;
+  bottom: 58px;
+  right: 12px;
+  font-size: 6px;
+  font-weight: 700;
+  color: rgba(168,85,247,0.25);
+  letter-spacing: 0.8px;
+  font-family: 'Orbitron', monospace;
+}
+
+/* ── Antenna / RF Shield ──────────────────────────────────────── */
+
+.antenna-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.rf-shield {
+  width: 80%;
+  height: 64px;
+  background: linear-gradient(145deg, #1a1a30 0%, #0e0e22 30%, #151530 50%, #0a0a1e 100%);
+  border-radius: 3px;
+  border: 1px solid rgba(168,85,247,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow:
+    0 1px 4px rgba(0,0,0,0.4),
+    inset 0 0 20px rgba(168,85,247,0.03);
+}
+
+.rf-shield::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(168,85,247,0.06);
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 4px,
+    rgba(168,85,247,0.02) 4px,
+    rgba(168,85,247,0.02) 5px
+  );
+}
+
+.rf-shield-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wifi-symbol {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.4));
+}
+
+.antenna-trace {
+  width: 2px;
+  height: 8px;
+  background: var(--neon-cyan);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(34,211,238,0.5);
+}
+
+/* ── ESP8266 Main Chip ────────────────────────────────────────── */
+
+.esp-chip {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 6px 0;
+}
+
+.chip-pins-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chip-leg {
+  width: 6px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), rgba(34,211,238,0.5));
+  border-radius: 0.5px;
+  box-shadow: 0 0 3px rgba(34,211,238,0.3);
+}
+
+.chip-body {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(145deg, #12122a 0%, #0a0a1e 50%, #0e0e24 100%);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  position: relative;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.5),
+    0 0 15px rgba(168,85,247,0.05),
+    inset 0 0 20px rgba(168,85,247,0.03);
+}
+
+.chip-text-main {
+  font-size: 8px;
+  font-weight: 800;
+  color: rgba(168,85,247,0.5);
+  letter-spacing: 1px;
+  font-family: 'Orbitron', monospace;
+  text-shadow: 0 0 8px rgba(168,85,247,0.3);
+}
+
+.chip-text-sub {
+  font-size: 5px;
+  color: rgba(34,211,238,0.3);
+  letter-spacing: 0.5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.chip-dot {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(168,85,247,0.3);
+  box-shadow: 0 0 4px rgba(168,85,247,0.4);
+}
+
+/* ── SMD Components ───────────────────────────────────────────── */
+
+.pcb-components {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.smd-ic {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smd-ic-body {
+  width: 48px;
+  height: 22px;
+  background: linear-gradient(145deg, #12122a, #0a0a1e);
+  border: 1px solid rgba(168,85,247,0.15);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.smd-ic-label {
+  font-size: 5px;
+  font-weight: 700;
+  color: rgba(168,85,247,0.3);
+  letter-spacing: 0.5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.smd-ic-pins {
+  display: flex;
+  justify-content: space-around;
+  width: 44px;
+}
+
+.smd-pin {
+  width: 4px;
+  height: 3px;
+  background: linear-gradient(180deg, rgba(34,211,238,0.6), rgba(34,211,238,0.3));
+  border-radius: 0.5px;
+}
+
+.smd-passives {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.smd-resistor {
+  width: 8px;
+  height: 4px;
+  background: linear-gradient(90deg, #12122a, #0a0a1e, #12122a);
+  border: 0.5px solid rgba(168,85,247,0.15);
+  border-radius: 0.5px;
+}
+
+.smd-cap {
+  width: 5px;
+  height: 5px;
+  background: rgba(168,85,247,0.3);
+  border-radius: 0.5px;
+  border: 0.5px solid rgba(168,85,247,0.4);
+  box-shadow: 0 0 3px rgba(168,85,247,0.2);
+}
+
+.smd-regulator {
+  width: 28px;
+  height: 14px;
+  background: linear-gradient(145deg, #12122a, #0a0a1e);
+  border: 1px solid rgba(34,211,238,0.15);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smd-reg-label {
+  font-size: 4px;
+  font-weight: 700;
+  color: rgba(34,211,238,0.3);
+  letter-spacing: 0.3px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Tactile Buttons ──────────────────────────────────────────── */
+
+.board-buttons {
+  display: flex;
+  gap: 24px;
+  margin: 6px 0;
+}
+
+.tactile-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.tactile-cap {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(145deg, #1a1a30, #12122a);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow:
+    0 1px 4px rgba(0,0,0,0.4),
+    0 0 8px rgba(168,85,247,0.05);
+  transition: all 0.1s ease;
+}
+
+.tactile-cap:hover {
+  background: linear-gradient(145deg, #22224a, #1a1a3a);
+  border-color: var(--neon-purple);
+  transform: translateY(1px);
+  box-shadow: 0 0 12px rgba(168,85,247,0.2);
+}
+
+.tactile-cap:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 15px rgba(168,85,247,0.3);
+  border-color: var(--neon-cyan);
+}
+
+.tactile-label {
+  font-size: 5px;
+  font-weight: 700;
+  color: rgba(168,85,247,0.3);
+  letter-spacing: 0.5px;
+  font-family: 'Orbitron', monospace;
+}
+
+/* ── Built-in SMD LED ─────────────────────────────────────────── */
+
+.builtin-led-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.builtin-smd-led {
+  width: 6px;
+  height: 4px;
+  background: #0a0a1e;
+  border: 0.5px solid rgba(34,211,238,0.2);
+  border-radius: 0.5px;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.builtin-smd-led.on {
+  background: color-mix(in srgb, var(--neon-cyan) calc(var(--led-brightness, 1) * 100%), #0a0a1e);
+  border-color: color-mix(in srgb, var(--neon-cyan) calc(var(--led-brightness, 1) * 80%), rgba(34,211,238,0.2));
+  box-shadow: 0 0 8px rgba(34,211,238,0.4);
+}
+
+.smd-led-glow {
+  position: absolute;
+  inset: calc(-1 * var(--led-glow-radius, 6px));
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    color-mix(in srgb, rgba(34,211,238,0.6) calc(var(--led-brightness, 1) * 100%), transparent) 0%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.2s ease, inset 0.2s ease;
+}
+
+.builtin-smd-led.on .smd-led-glow {
+  opacity: var(--led-brightness, 1);
+}
+
+.builtin-led-text {
+  font-size: 5px;
+  font-weight: 700;
+  color: rgba(34,211,238,0.3);
+  letter-spacing: 0.5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── PCB Traces ───────────────────────────────────────────────── */
+
+.pcb-traces {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.trace {
+  position: absolute;
+  background: rgba(168,85,247,0.06);
+  box-shadow: 0 0 3px rgba(168,85,247,0.03);
+}
+
+.trace.t1 { width: 1px; height: 60%; top: 10%; left: 20%; }
+.trace.t2 { width: 40%; height: 1px; top: 35%; left: 10%; }
+.trace.t3 { width: 1px; height: 40%; top: 30%; right: 25%; }
+.trace.t4 { width: 30%; height: 1px; top: 65%; right: 15%; }
+
+/* ── USB Connector ────────────────────────────────────────────── */
+
+.usb-connector {
+  margin-top: auto;
+  margin-bottom: -2px;
+}
+
+.usb-shell {
+  width: 32px;
+  height: 14px;
+  background: linear-gradient(180deg, #2a2a40 0%, #1a1a30 50%, #222238 100%);
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 2px 2px 3px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.4),
+    0 0 8px rgba(168,85,247,0.05);
+}
+
+.usb-inner {
+  width: 18px;
+  height: 6px;
+  background: linear-gradient(180deg, #06060f, #0a0a18);
+  border-radius: 1px;
+  border: 0.5px solid rgba(168,85,247,0.15);
+}
+
+/* ── Status Badge ─────────────────────────────────────────────── */
+
+.board-status {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'Orbitron', monospace;
+}
+
+.board-status.running {
+  color: var(--neon-green);
+  background: rgba(57,255,20,0.1);
+  text-shadow: 0 0 6px rgba(57,255,20,0.4);
+}
+
+.board-status.stopped {
+  color: var(--neon-pink);
+  background: rgba(247,37,133,0.1);
+  text-shadow: 0 0 6px rgba(247,37,133,0.3);
+}
+
+.board-status.idle {
+  color: var(--text-muted);
+  background: rgba(100,100,140,0.1);
+}

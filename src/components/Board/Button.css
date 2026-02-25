@@ -1,0 +1,76 @@
+/**
+ * Button.css — Cyberpunk physical button with neon feedback
+ */
+
+.board-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.btn-physical {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(10,10,30,0.8);
+  border: 2px solid rgba(168,85,247,0.25);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s cubic-bezier(0.34,1.56,0.64,1);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-physical:hover {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 20px rgba(168,85,247,0.2);
+  transform: scale(1.05);
+}
+
+.btn-physical:active,
+.board-button.pressed .btn-physical {
+  transform: scale(0.92);
+  background: rgba(168,85,247,0.15);
+  border-color: var(--neon-cyan);
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,0.4),
+    0 0 25px rgba(34,211,238,0.3);
+}
+
+.btn-cap {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(168,85,247,0.3);
+  transition: all 0.15s ease;
+  box-shadow: 0 0 4px rgba(168,85,247,0.1);
+}
+
+.board-button.pressed .btn-cap {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 16px rgba(34,211,238,0.5);
+}
+
+.btn-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.btn-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.btn-pin {
+  font-size: 8px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
